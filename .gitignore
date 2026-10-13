@@ -1,0 +1,27 @@
+# Python virtual environments and caches
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+
+# Jupyter and local tooling
+.ipynb_checkpoints/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Local secrets and environment files
+.env*
+!.env.example
+
+# Build and packaging output
+build/
+dist/
+*.egg-info/
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
