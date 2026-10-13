@@ -1,0 +1,15 @@
+cff-version: 1.2.0
+message: "If you use or adapt this software, please cite the project as below."
+title: "Breast Cancer Detection Notebook"
+type: software
+authors:
+  - family-names: Kumar
+    given-names: Brajesh
+repository-code: "https://github.com/Brajesh31/Breast_Cancer_Detection"
+url: "https://github.com/Brajesh31/Breast_Cancer_Detection"
+license: MIT
+keywords:
+  - Jupyter notebook
+  - machine learning
+  - classification
+  - educational project
