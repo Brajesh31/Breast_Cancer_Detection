@@ -1,0 +1,7 @@
+# Install runtime and development dependencies with:
+# python -m pip install -r requirements.txt -r requirements-dev.txt
+-r requirements.txt
+pytest>=8.0,<10
+ruff>=0.8,<1
+pre-commit>=4.0,<5
+nbformat>=5.10,<6
