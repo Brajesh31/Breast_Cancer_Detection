@@ -1,0 +1,25 @@
+name: "✨ Feature request"
+description: Propose a focused educational or engineering improvement.
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem and intended learner benefit
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+  - type: textarea
+    id: risks
+    attributes:
+      label: Data, privacy, security and responsible-use implications

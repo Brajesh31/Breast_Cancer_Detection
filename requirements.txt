@@ -1,0 +1,8 @@
+# Direct dependencies imported by the existing Jupyter notebook.
+# This is a compatibility-oriented input list, not a fully resolved lockfile.
+numpy
+pandas
+matplotlib
+seaborn
+scikit-learn
+notebook

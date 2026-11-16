@@ -1,51 +1,69 @@
-# Architecture
+# 🏛️ Architecture and System Boundaries
 
-## System overview
+## 1. Current architecture
 
-This repository is a local data-analysis project rather than a deployed application. The notebook reads a CSV from the current working directory, inspects and transforms a pandas DataFrame, and asks Jupyter to display tables, metrics, and plots.
+This repository is a local notebook workflow. It has no deployed service, user-facing web application, database, API, background job, authentication, or hosted inference model.
 
-    breast-cancer.csv
-          |
-          v
-    pandas DataFrame
-      |         |
-      |         +--> summaries and plots in notebook output
-      |
-      +--> label mapping and exploratory normalization
-      |
-      +--> current split and model examples
-             (not a valid diagnosis evaluation; see below)
+```mermaid
+flowchart TD
+    A[👩‍💻 Learner] --> B[Python environment]
+    B --> C[Jupyter Notebook]
+    C --> D[Local CSV file]
+    D --> E[pandas DataFrame]
+    E --> F[Schema and quality inspection]
+    E --> G[Exploratory summaries and plots]
+    E --> H[Incomplete model examples]
+    F --> I[Notebook outputs]
+    G --> I
+    H --> I
+    I --> J[Human interpretation]
+    J --> K[⚠️ Educational context only]
+```
 
-No web server, user interface, API, database, background worker, model-serving endpoint, or cloud deployment configuration is present.
+## 2. Component responsibilities
 
-## Repository components
+| Component | Responsibility | Boundary |
+|---|---|---|
+| Notebook | Executes analysis cells and renders output | Local kernel only |
+| CSV | Supplies static observations and labels | No live data source |
+| pandas | Loads and manipulates the table | In-memory DataFrame |
+| NumPy | Numerical operations | Notebook runtime |
+| Matplotlib / Seaborn | Visual exploration | Static notebook plots |
+| scikit-learn | Existing preprocessing and example estimators | Current model examples are not valid diagnosis evaluation |
+| GitHub workflows | Repository checks | No model-serving or clinical assurance |
 
-| Path | Role |
-| --- | --- |
-| **Breast_Cancer.ipynb** | Notebook source, markdown narrative, code cells, and saved cell outputs. |
-| **breast-cancer.csv** | Local table containing sample ID, diagnosis, and 30 numeric attributes. |
-| **README.md** | Project purpose, setup, dataset context, and known limitations. |
-| **docs/** | Project-specific design, environment, data handling, and support guides. |
+## 3. Current data path
 
-## Dataset shape and labels
+The notebook loads the CSV by a relative path. It inspects the DataFrame, transforms diagnosis labels, and renders summaries and plots. The later modeling code does not correctly define diagnosis as the target. See [Known issues](known-issues.md).
 
-The checked-in CSV has 569 rows and 32 columns: an identifier, a diagnosis label, and 30 real-valued measurements. Diagnosis uses **M** for malignant and **B** for benign. The checked-in row count and schema match the UCI Breast Cancer Wisconsin (Diagnostic) dataset, but the repository does not record the download source for this exact file. See [Data and persistence](database.md) and the [README's provenance note](../README.md#data-provenance-and-attribution).
+## 4. Proposed safe experiment boundary
 
-## Notebook flow as currently written
+```mermaid
+flowchart TD
+    A[Versioned dataset] --> B[Schema and provenance validation]
+    B --> C[Define target: diagnosis]
+    C --> D[Exclude id and diagnosis from X]
+    D --> E[Stratified train/test split]
+    E --> F[Training-only preprocessing pipeline]
+    F --> G[Cross-validation on training data]
+    G --> H[Freeze model and threshold]
+    H --> I[Single held-out evaluation]
+    I --> J[Per-class metrics, uncertainty, limitations]
+    J --> K[Educational report, not clinical advice]
+```
 
-The notebook loads the CSV, prints shape, columns, data types, duplicates, missing-value counts, and descriptive statistics, maps diagnosis to 1/0, and creates plots. It then splits the full DataFrame. The current assignments select every column except the final feature as inputs and use **fractal_dimension_worst** as the target; diagnosis remains in the inputs. Consequently this is not a diagnosis classifier and includes target leakage for the intended diagnosis task.
+This is a recommended future workflow, not current implementation.
 
-The section labeled “Logistic Regression” creates a separate eight-row toy DataFrame and sets its predictions equal to the target labels. Its displayed score is therefore a tautology, not a learned result. The next section fits linear regression to the earlier incorrectly selected target. The notebook also overwrites the name **data** with the toy dictionary after the split. These are current implementation facts, not recommended modeling practices.
+## 5. Trust boundaries and execution
 
-## Runtime and data boundaries
+Notebook cells execute Python with the local user's permissions. Running an untrusted notebook can read or modify accessible files and may access network resources if code requests it. Review diffs, use an isolated environment, and avoid running untrusted notebooks where sensitive files are accessible.
 
-- The notebook executes locally in a user-controlled Jupyter kernel.
-- It reads only the relative CSV path and does not fetch data or send notebook inputs to a project API.
-- It has no database or persistent application state.
-- It imports NumPy, pandas, Matplotlib, Seaborn, and scikit-learn.
-- Notebook cell outputs are stored in the **.ipynb** file when saved.
-- The notebook's results are educational and must not guide clinical decisions.
+## 6. Architecture decisions
 
-## Intended extension points
+- Keep the project notebook-first while its purpose remains educational.
+- Do not introduce a backend, database, API, or UI without an actual requirement.
+- Keep dataset licensing distinct from the project code license.
+- Do not report model metrics until a valid experiment exists.
+- Treat clinical use as out of scope.
 
-A future corrected analysis should create an explicit feature matrix that excludes **id** and **diagnosis**, create a separate diagnosis target, fit all preprocessing on training data, and evaluate with a held-out stratified split or cross-validation. Any model result should include class-specific metrics and clear limitations. See [Development](development.md) and [Roadmap](../ROADMAP.md).
+See [Threat model](threat-model.md), [Data flow](data-flow.md), and [Project structure](project-structure.md).

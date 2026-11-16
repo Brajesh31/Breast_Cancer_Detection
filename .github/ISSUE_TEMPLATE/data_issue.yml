@@ -1,0 +1,26 @@
+name: "🗃️ Dataset or provenance issue"
+description: Report a schema, quality, attribution, or licensing concern.
+title: "[Data]: "
+labels: ["data"]
+body:
+  - type: markdown
+    attributes:
+      value: "Never upload patient records or restricted data in an issue."
+  - type: textarea
+    id: issue
+    attributes:
+      label: Description
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Source URL or dataset citation
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Reproducible evidence and affected columns
+  - type: textarea
+    id: rights
+    attributes:
+      label: License, privacy, or redistribution implications

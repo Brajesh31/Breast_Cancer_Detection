@@ -1,0 +1,25 @@
+name: 🔐 Dependency audit
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: "17 5 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: 📦 Install audit tool
+        run: python -m pip install pip-audit
+      - name: 🔎 Audit direct dependencies
+        run: pip-audit -r requirements.txt

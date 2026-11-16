@@ -1,0 +1,15 @@
+name: "🔒 Security report"
+description: Direct reporters to the private vulnerability reporting channel.
+title: "[Security]: "
+labels: ["security"]
+body:
+  - type: markdown
+    attributes:
+      value: "Do not disclose exploit details, credentials, or sensitive data publicly. Use the private reporting route in SECURITY.md."
+  - type: checkboxes
+    id: acknowledgement
+    attributes:
+      label: Confirmation
+      options:
+        - label: I will not include secrets, patient data, or unpatched exploit details in this public form.
+          required: true

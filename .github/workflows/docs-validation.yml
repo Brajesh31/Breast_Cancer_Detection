@@ -1,0 +1,23 @@
+name: 📚 Documentation validation
+
+on:
+  push:
+    branches: [main]
+    paths: ["**.md", "docs/**", "scripts/validate_docs.py"]
+  pull_request:
+    paths: ["**.md", "docs/**", "scripts/validate_docs.py"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  markdown:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: 🔎 Check local links and fences
+        run: python scripts/validate_docs.py

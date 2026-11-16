@@ -1,37 +1,37 @@
-# Frequently asked questions
+# ❓ Frequently Asked Questions
 
-## What is in this repository?
+## Is this a production breast cancer detection system?
 
-A Jupyter notebook and a CSV table for an educational exploration of the Breast Cancer Wisconsin Diagnostic dataset. It is not a web application or a deployable diagnostic service.
+No. It is a local educational notebook project. It is not clinically validated and must not be used for patient care.
 
-## What does the CSV contain?
+## Does the repository currently contain a valid diagnosis classifier?
 
-It has 569 rows, one sample ID column, one diagnosis column, and 30 numeric measurements. The labels are **M** for malignant and **B** for benign. The local class counts are 212 malignant and 357 benign.
+No. The current notebook has incorrect target selection, target leakage for the intended diagnosis task, and a toy section that copies labels into predictions.
 
-## Where did the data come from?
+## Why does the notebook show 1.0 accuracy?
 
-The row count and schema match the UCI Machine Learning Repository's Breast Cancer Wisconsin (Diagnostic) dataset. The repository does not record the download source for its exact CSV copy, so its provenance has not been verified. UCI lists its dataset under CC BY 4.0; review the [README data note](../README.md#data-provenance-and-attribution) and verify the copy's terms before redistribution.
+The displayed value comes from a synthetic example where the predictions are set equal to the true labels. It is tautological and does not measure a trained model.
 
-## Is the displayed 1.0 accuracy valid?
+## What is the target column for a future diagnosis experiment?
 
-No. The section labeled “Logistic Regression” uses a synthetic example and copies the known labels into predictions. The score is therefore tautological and is not a breast-cancer model result.
+The target would be `diagnosis`. The `id` field should be excluded from predictive features.
 
-## Does the notebook currently train a valid cancer classifier?
+## Why is the dataset called Wisconsin Diagnostic?
 
-No. The later model split uses the last feature, **fractal_dimension_worst**, as its target and retains diagnosis among the input columns. It does not correctly evaluate diagnosis. See [Architecture](architecture.md) and [Development](development.md).
+The checked-in schema and row count match the UCI Breast Cancer Wisconsin (Diagnostic) dataset. The exact download provenance of this local file is not recorded.
 
-## Can I use this for diagnosis or treatment?
+## Does the MIT license cover the CSV?
 
-No. The notebook is an unfinished educational exercise and has not been clinically validated. Do not use it for screening, diagnosis, treatment, or patient-care decisions.
+Not automatically. Code licensing and dataset licensing are separate. Review [LICENSE-DATA.md](../LICENSE-DATA.md).
 
-## How do I run the notebook?
+## Why does the notebook fail with a scikit-learn error?
 
-Create a Python virtual environment, install the packages in [Installation](installation.md), and launch Jupyter from the repository root. The notebook needs the CSV file to be available at its relative path.
+The notebook uses `mean_squared_error(..., squared=False)`, an argument removed in scikit-learn 1.6. See [Troubleshooting](troubleshooting.md).
 
-## Why does a recent scikit-learn version fail in the RMSE cell?
+## Is there an API, web app, or database?
 
-The notebook uses the removed **squared=False** argument to **mean_squared_error**. Replace it with **root_mean_squared_error** when updating the notebook. Details are in [Troubleshooting](troubleshooting.md).
+No. The current repository contains a notebook and local dataset, not a deployed application.
 
-## Does this project store personal data or expose an API?
+## How do I contribute?
 
-No. There is no database, data submission flow, or project API. The checked-in CSV is a local benchmark dataset; do not add identifiable patient data.
+Read [CONTRIBUTING.md](../CONTRIBUTING.md), follow the [Code of Conduct](../CODE_OF_CONDUCT.md), and open a focused pull request.

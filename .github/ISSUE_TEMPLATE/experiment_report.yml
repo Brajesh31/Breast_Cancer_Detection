@@ -1,0 +1,32 @@
+name: "🧪 Experiment proposal or report"
+description: Propose or document a reproducible educational experiment.
+title: "[Experiment]: "
+labels: ["experiment"]
+body:
+  - type: textarea
+    id: question
+    attributes:
+      label: Research question and hypothesis
+    validations:
+      required: true
+  - type: textarea
+    id: data
+    attributes:
+      label: Dataset version, source, and license
+    validations:
+      required: true
+  - type: textarea
+    id: method
+    attributes:
+      label: Target, features, split, preprocessing, and validation design
+    validations:
+      required: true
+  - type: textarea
+    id: results
+    attributes:
+      label: Results and evidence
+      description: Report only measured results; include uncertainty and limitations.
+  - type: textarea
+    id: safety
+    attributes:
+      label: Limitations and non-clinical-use statement

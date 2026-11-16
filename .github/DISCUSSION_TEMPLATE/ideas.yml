@@ -1,0 +1,15 @@
+title: "💡 Idea: "
+body:
+  - type: textarea
+    attributes:
+      label: Problem or learning opportunity
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Proposed approach
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Risks and limitations

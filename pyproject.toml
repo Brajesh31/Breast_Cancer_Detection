@@ -1,0 +1,27 @@
+[project]
+name = "breast-cancer-detection-education"
+version = "0.2.0"
+description = "Educational notebook exploration of a public diagnostic dataset; not a clinical system."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+authors = [{ name = "Brajesh Kumar" }]
+dependencies = [
+  "numpy",
+  "pandas",
+  "matplotlib",
+  "seaborn",
+  "scikit-learn",
+  "notebook",
+]
+
+[project.optional-dependencies]
+test = ["pytest"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"

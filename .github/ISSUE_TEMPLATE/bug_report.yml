@@ -1,0 +1,37 @@
+name: "🐛 Bug report"
+description: Report a reproducible notebook, script, documentation, or workflow defect.
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: "Do not include credentials, private health information, or restricted datasets."
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What failed?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      placeholder: "1. Run ... 2. Observe ..."
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Python, OS and package versions
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected versus actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Sanitized logs
+      description: Remove tokens, personal information and patient data.
