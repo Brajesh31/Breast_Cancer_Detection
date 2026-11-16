@@ -57,6 +57,13 @@ Welcome to the detailed documentation for **Breast Cancer Detection & Data Analy
 | [FAQ](faq.md) | Common questions |
 | [Troubleshooting](troubleshooting.md) | Common setup and notebook errors |
 | [Templates](templates/README.md) | Reusable engineering and experiment templates |
+| [Model card](model-card.md) | Current model status, intended use, and limitations |
+| [Reproducibility](reproducibility.md) | Experiment provenance and repeatability standards |
+| [Bias and fairness](bias-and-fairness.md) | Subgroup evaluation requirements and current evidence gaps |
+| [Glossary](glossary.md) | Shared project and ML terminology |
+| [Experiment register](experiments/README.md) | How experiment records are organized |
+| [Decision records](decisions/README.md) | Architecture and methodology decision log |
+| [Technical reports](reports/README.md) | Quality, reproducibility, and review reports |
 | [Visual assets](assets/README.md) | Original diagrams and their meanings |
 
 ## 🧱 Current implementation versus future work

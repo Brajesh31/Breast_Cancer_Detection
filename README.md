@@ -115,12 +115,12 @@ Breast_Cancer_Detection/
 │   └── workflows/                  # CI, docs checks and dependency audit
 ├── docs/
 │   ├── assets/                     # Original SVG flow diagrams
-│   ├── templates/                  # ADR, experiment, dataset and review templates
+│   ├── decisions/                  # Architecture decision record register\n│   ├── experiments/                # Reviewed experiment register\n│   ├── reports/                    # Technical report register\n│   ├── templates/                  # ADR, experiment, dataset and review templates
 │   ├── architecture.md
 │   ├── data-dictionary.md
 │   ├── dataset-provenance.md
 │   ├── modeling-methodology.md
-│   ├── evaluation-plan.md
+│   ├── model-card.md               # Explicit current model status and intended use\n│   ├── reproducibility.md           # Experiment provenance requirements\n│   ├── bias-and-fairness.md         # Subgroup evaluation requirements\n│   ├── glossary.md                 # Shared terminology\n│   ├── evaluation-plan.md
 │   ├── safety-and-responsible-use.md
 │   ├── privacy.md
 │   ├── threat-model.md
@@ -237,7 +237,7 @@ These checks cover the documented static CSV contract and documentation links. T
 
 | Guide | What it covers |
 |---|---|
-| [Documentation hub](docs/README.md) | Full index and reading paths |
+| [Documentation hub](docs/README.md) | Full index and reading paths |\n| [Model card](docs/model-card.md) | Model status, intended use, and limitations |\n| [Reproducibility](docs/reproducibility.md) | Experiment provenance and repeatability |\n| [Bias and fairness](docs/bias-and-fairness.md) | Subgroup evaluation requirements |\n| [Glossary](docs/glossary.md) | Shared terminology |
 | [Architecture](docs/architecture.md) | Current system boundary and notebook flow |
 | [Project structure](docs/project-structure.md) | Directory and file responsibilities |
 | [Data dictionary](docs/data-dictionary.md) | Column groups and label semantics |
